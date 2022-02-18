@@ -9,6 +9,9 @@ header {
     margin: 0 auto;
 }
 
+h1 {
+    margin-left: 1rem;
+}
 /* Step 1. everything for the smallest screen first */
 /* When Styling the text, style the anchor tag directly to overwrite the browser styling. Layout styling goes on the li element. */
 
@@ -37,4 +40,60 @@ ul.submenu > li a {
 }
 ul.submenu {
     padding: 0 1.25rem;
+}
+
+svg {
+    display: none;
+    fill: bisque;
+}
+
+@media screen and (min-width:60rem) {
+    ul.menu {
+        display: flex;
+        
+    }
+    ul.menu li{
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: auto;
+        text-align: center;
+        position: relative;
+        white-space: nowrap;
+    }
+    ul.submenu {
+        padding: 0;
+        top: 56px;
+        left: 0;
+        position: absolute;
+        background-color:rgb(32, 31, 31);
+        border-radius: 0 0 5px 5px;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    /* step 3: add hover states that show the submenus */
+    ul.menu li:hover >ul {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* step 5: add accessibility with the :focus-within state on the li elements */
+    ul.menu li:focus-within > ul,
+    ul.menu li > ul:focus {
+        visibility: visible;
+        opacity: 1;
+        display: block;
+    }
+
+    svg {
+        display: inline;
+        margin-left: .3125rem;
+    }
+
+    li a:hover,
+    a:hover svg {
+        fill: rgb(0, 153, 255);
+        color: rgb(0, 153, 255);
+    }
 }
